@@ -3,378 +3,418 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-  <meta name="theme-color" content="#09090b">
+  <meta name="theme-color" content="#000000">
   <meta name="description" content="Links oficiais de Rafael Tonietto — Personal Trainer Academy.">
   <title>Rafael Tonietto | Links Oficiais</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Oswald:wght@500;600;700&display=swap" rel="stylesheet">
-  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;600&family=Inter:wght@400;500;600;700&family=Oswald:wght@500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet">
   <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
     html {
       -webkit-text-size-adjust: 100%;
+      scroll-behavior: smooth;
     }
 
     body {
       font-family: 'Inter', system-ui, sans-serif;
+      background: #000;
+      color: #fff;
+      min-height: 100dvh;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
     }
 
-    .faixa-link {
-      -webkit-tap-highlight-color: transparent;
-      transition: flex 0.7s cubic-bezier(0.25, 0.8, 0.25, 1);
-    }
-
-    .faixa-link:focus-visible {
-      outline: 2px solid #e85d22;
-      outline-offset: -2px;
-      z-index: 10;
-    }
-
-    .btn-faixa {
+    /* —— Background —— */
+    .page-bg {
+      position: fixed;
+      inset: 0;
+      z-index: 0;
       pointer-events: none;
     }
 
-    @media (max-width: 767px) {
-      body {
-        height: 100dvh;
-        max-height: 100dvh;
-        overflow: hidden;
-      }
-
-      .links-grid {
-        display: flex;
-        flex-direction: column;
-        scroll-snap-type: y mandatory;
-        -webkit-overflow-scrolling: touch;
-        overscroll-behavior-y: contain;
-        padding-bottom: env(safe-area-inset-bottom, 0px);
-      }
-
-      .links-grid .faixa-link {
-        width: 100%;
-        flex: none !important;
-        height: 50dvh;
-        min-height: 50dvh;
-        scroll-snap-align: start;
-        scroll-snap-stop: always;
-      }
-
-      .links-grid .faixa-conteudo {
-        padding: 1rem 1.25rem;
-        padding-bottom: max(1rem, env(safe-area-inset-bottom));
-        justify-content: center;
-        height: 100%;
-        gap: 0.5rem;
-      }
-
-      .links-grid .titulo-faixa {
-        font-size: 1.35rem;
-        margin-bottom: 0.5rem;
-      }
-
-      .links-grid .titulo-faixa--longo {
-        font-size: 1.05rem;
-      }
-
-      .links-grid .titulo-faixa--longo .titulo-faixa__destaque {
-        font-size: 0.82em;
-        line-height: 1.15;
-      }
-
-      .links-grid .btn-faixa {
-        min-width: 11rem;
-        padding: 0.85rem 2rem;
-        font-size: 0.8125rem;
-      }
-
-      .faixa-link:active > div:first-child {
-        opacity: 0.75;
-      }
+    .grid-overlay {
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+      background-size: 48px 48px;
+      mask-image: radial-gradient(ellipse 80% 70% at 50% 40%, black 20%, transparent 75%);
     }
 
-    @media (min-width: 768px) {
-      .faixa-link {
-        min-width: 0;
-      }
+    .bg-photo {
+      position: absolute;
+      border-radius: 4px;
+      object-fit: cover;
+      filter: grayscale(100%) contrast(1.1);
+      opacity: 0.12;
     }
 
-    .titulo-header {
-      font-family: 'Oswald', sans-serif;
-      font-weight: 600;
-      letter-spacing: 0.02em;
-      text-transform: uppercase;
-      color: #fafafa;
+    .bg-photo--1 { width: 140px; height: 180px; top: 8%; left: 4%; transform: rotate(-6deg); }
+    .bg-photo--2 { width: 100px; height: 130px; top: 35%; left: 12%; opacity: 0.08; }
+    .bg-photo--3 { width: 120px; height: 150px; bottom: 15%; left: 6%; transform: rotate(4deg); opacity: 0.1; }
+    .bg-photo--4 { width: 130px; height: 170px; top: 12%; right: 5%; transform: rotate(5deg); }
+    .bg-photo--5 { width: 90px; height: 115px; top: 50%; right: 10%; opacity: 0.08; }
+    .bg-photo--6 { width: 110px; height: 140px; bottom: 10%; right: 4%; transform: rotate(-3deg); opacity: 0.1; }
+
+    /* —— Layout —— */
+    .page {
+      position: relative;
+      z-index: 1;
+      min-height: 100dvh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: max(1.5rem, env(safe-area-inset-top)) 1rem max(2.5rem, env(safe-area-inset-bottom));
     }
 
-    .titulo-faixa {
-      line-height: 1.1;
+    .layout {
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+      gap: 0;
+      width: 100%;
+      max-width: 1200px;
     }
 
-    .titulo-faixa__linha {
+    .hero-side {
+      display: none;
+      flex-shrink: 0;
+      width: 220px;
+      padding-top: 6rem;
+    }
+
+    .hero-side img {
+      width: 100%;
+      height: auto;
+      max-height: 420px;
+      object-fit: cover;
+      object-position: center top;
+      filter: grayscale(100%) contrast(1.15);
+      border-radius: 2px;
+    }
+
+    .hero-side--left { padding-right: 1.5rem; }
+    .hero-side--right { padding-left: 1.5rem; }
+
+    .center {
+      flex: 1;
+      width: 100%;
+      max-width: 520px;
+      min-width: 0;
+    }
+
+    /* —— Quote decorativa —— */
+    .quote-deco {
+      position: fixed;
+      top: max(1.25rem, env(safe-area-inset-top));
+      right: 1.5rem;
+      max-width: 200px;
+      font-family: 'Caveat', cursive;
+      font-size: 1.15rem;
+      line-height: 1.3;
+      color: rgba(255, 255, 255, 0.55);
+      text-align: right;
+      z-index: 2;
+      pointer-events: none;
+      display: none;
+    }
+
+    /* —— Header —— */
+    .header {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+
+    .avatar-wrap {
+      display: inline-block;
+      padding: 3px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #ff6600, #e85d22, #db2777);
+      margin-bottom: 1rem;
+    }
+
+    .avatar {
       display: block;
-      font-family: 'Inter', system-ui, sans-serif;
-      font-size: 0.5em;
-      font-weight: 500;
-      letter-spacing: 0.12em;
-      color: rgba(255, 255, 255, 0.65);
-      margin-bottom: 0.35em;
-      text-transform: uppercase;
+      width: 88px;
+      height: 88px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 3px solid #000;
     }
 
-    .titulo-faixa__destaque {
-      display: block;
+    .header__title {
       font-family: 'Oswald', sans-serif;
-      font-size: 1em;
+      font-size: 1.75rem;
       font-weight: 700;
       letter-spacing: 0.02em;
-      text-transform: uppercase;
-      position: relative;
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
-      filter: drop-shadow(0 4px 20px var(--glow, rgba(255, 255, 255, 0.15)));
-      transition: filter 0.5s ease, transform 0.5s ease;
+      color: #ff6600;
+      text-transform: none;
+      line-height: 1.2;
+    }
+
+    .header__subtitle {
+      margin-top: 0.35rem;
+      font-size: 0.875rem;
+      font-weight: 500;
+      color: rgba(255, 255, 255, 0.7);
+      letter-spacing: 0.04em;
+    }
+
+    /* —— Cards —— */
+    .cards {
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+    }
+
+    .card {
+      display: block;
+      text-decoration: none;
+      color: inherit;
+      padding: 1.5rem 1.35rem 1.35rem;
+      border-radius: 10px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      background: rgba(12, 12, 12, 0.75);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      -webkit-tap-highlight-color: transparent;
+      transition: border-color 0.3s ease, background 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .card:focus-visible {
+      outline: 2px solid #ff6600;
+      outline-offset: 3px;
     }
 
     @media (hover: hover) {
-      .group:hover .titulo-faixa__destaque {
-        filter: drop-shadow(0 6px 32px var(--glow, rgba(255, 255, 255, 0.4))) brightness(1.12);
-        transform: scale(1.03);
+      .card:hover {
+        border-color: rgba(255, 102, 0, 0.35);
+        background: rgba(20, 20, 20, 0.85);
+        transform: translateY(-2px);
+        box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5);
       }
 
-      .group:hover .titulo-faixa__linha {
-        color: rgba(255, 255, 255, 0.9);
-      }
-
-      .group:hover .titulo-faixa__destaque--instagram {
-        background-position: right center;
-      }
-
-      .group:hover .btn-faixa {
-        transform: translateY(-1px);
-      }
-
-      .group:hover .btn-faixa--laranja {
-        background-color: #fff;
-        color: #e85d22;
-        box-shadow: 0 6px 24px rgba(255, 255, 255, 0.2);
-      }
-
-      .group:hover .btn-faixa--scala {
-        background-color: #fff;
-        color: #ff6600;
-        box-shadow: 0 6px 24px rgba(255, 255, 255, 0.2);
-      }
-
-      .group:hover .btn-faixa--amarelo {
-        background-color: #fff;
-        color: #0a0a0a;
-        box-shadow: 0 6px 24px rgba(255, 255, 255, 0.2);
-      }
-
-      .group:hover .btn-faixa--instagram {
-        filter: brightness(1.1);
-        box-shadow: 0 6px 28px rgba(236, 72, 153, 0.5);
-      }
-
-      .group:hover .btn-faixa--azul {
-        background-color: #fff;
-        color: #00205b;
-        border-color: #fff;
-        box-shadow: 0 6px 24px rgba(255, 255, 255, 0.15);
+      .card:hover .card__btn {
+        background: #ff7722;
+        box-shadow: 0 6px 24px rgba(255, 102, 0, 0.45);
       }
     }
 
-    .titulo-faixa__linha {
-      transition: color 0.5s ease, letter-spacing 0.5s ease;
+    .card:active {
+      transform: scale(0.99);
     }
 
-    .titulo-faixa__destaque--laranja {
-      --glow: rgba(232, 93, 34, 0.55);
-      background-image: linear-gradient(165deg, #fff4ed 0%, #ffb380 28%, #e85d22 55%, #9a3412 100%);
+    .card__brand {
+      margin-bottom: 0.85rem;
+      line-height: 1.15;
     }
 
-    .titulo-faixa__destaque--scala {
-      --glow: rgba(255, 102, 0, 0.55);
-      background-image: linear-gradient(165deg, #fff7ed 0%, #fdba74 28%, #ff6600 55%, #c2410c 100%);
+    .card__brand--serif {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 1.65rem;
+      font-weight: 700;
+      font-style: italic;
+      letter-spacing: 0.06em;
+      background: linear-gradient(135deg, #fde68a 0%, #d4a574 40%, #b8860b 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
     }
 
-    .titulo-faixa__destaque--amarelo {
-      --glow: rgba(255, 204, 0, 0.5);
-      background-image: linear-gradient(165deg, #fffbeb 0%, #fde68a 28%, #ffcc00 55%, #a16207 100%);
+    .card__brand--oswald {
+      font-family: 'Oswald', sans-serif;
+      font-size: 1.5rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
     }
 
-    .titulo-faixa__destaque--instagram {
-      --glow: rgba(236, 72, 153, 0.5);
-      background-image: linear-gradient(120deg, #fce7f3 0%, #f472b6 25%, #fb923c 55%, #f97316 85%, #ea580c 100%);
-      background-size: 200% auto;
+    .card__brand--oswald .accent { color: #ff6600; }
+    .card__brand--oswald .muted { color: #fff; font-weight: 500; }
+
+    .card__brand--label {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, 0.5);
+      display: block;
+      margin-bottom: 0.25rem;
     }
 
-    .titulo-faixa__destaque--azul {
-      --glow: rgba(77, 166, 255, 0.55);
-      background-image: linear-gradient(165deg, #eff6ff 0%, #93c5fd 28%, #4da6ff 55%, #1e3a8a 100%);
+    .card__brand--big {
+      font-family: 'Oswald', sans-serif;
+      font-size: 2.25rem;
+      font-weight: 700;
+      color: #ff6600;
+      line-height: 1;
     }
 
-    .btn-faixa {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      min-width: 12.5rem;
-      padding: 0.95rem 2.5rem;
-      border-radius: 6px;
-      font-family: 'Inter', system-ui, sans-serif;
-      font-size: 0.9375rem;
+    .card__brand--big span {
+      font-size: 0.45em;
+      color: #fff;
       font-weight: 600;
       letter-spacing: 0.08em;
-      text-transform: uppercase;
-      line-height: 1;
-      transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
+      display: block;
+      margin-top: 0.15em;
     }
 
-    @media (min-width: 768px) {
-      .btn-faixa {
-        min-width: 14.5rem;
-        padding: 1.1rem 3rem;
-        font-size: 1.0625rem;
-      }
+    .card__text {
+      font-size: 0.9rem;
+      line-height: 1.55;
+      color: rgba(255, 255, 255, 0.82);
+      margin-bottom: 1.15rem;
     }
 
-    .btn-faixa--laranja {
-      background-color: #e85d22;
+    .card__text strong {
       color: #fff;
-      box-shadow: 0 4px 20px rgba(232, 93, 34, 0.35);
+      font-weight: 600;
     }
 
-    .btn-faixa--scala {
-      background-color: #ff6600;
+    .card__btn {
+      display: inline-block;
+      width: 100%;
+      text-align: center;
+      padding: 0.85rem 1.25rem;
+      border-radius: 6px;
+      background: #ff6600;
       color: #fff;
-      box-shadow: 0 4px 20px rgba(255, 102, 0, 0.35);
+      font-size: 0.875rem;
+      font-weight: 600;
+      letter-spacing: 0.02em;
+      pointer-events: none;
+      transition: background 0.3s ease, box-shadow 0.3s ease;
+      box-shadow: 0 4px 16px rgba(255, 102, 0, 0.3);
     }
 
-    .btn-faixa--amarelo {
-      background-color: #ffcc00;
-      color: #0a0a0a;
-      box-shadow: 0 4px 20px rgba(255, 204, 0, 0.35);
+    .card__btn--apply {
+      background: #ff6600;
     }
 
-    .btn-faixa--instagram {
-      background: linear-gradient(90deg, #db2777, #ea580c);
-      color: #fff;
-      box-shadow: 0 4px 20px rgba(236, 72, 153, 0.4);
+    /* —— Responsive —— */
+    @media (min-width: 900px) {
+      .hero-side { display: block; }
+      .quote-deco { display: block; }
+      .avatar { width: 96px; height: 96px; }
+      .header__title { font-size: 2rem; }
+      .card { padding: 1.65rem 1.5rem 1.5rem; }
+      .card__text { font-size: 0.9375rem; }
     }
 
-    .btn-faixa--azul {
-      background-color: #00205b;
-      color: #fff;
-      border: 1px solid #4da6ff;
-      box-shadow: 0 4px 20px rgba(0, 32, 91, 0.5);
+    @media (max-width: 599px) {
+      .bg-photo { opacity: 0.06; }
+      .bg-photo--1, .bg-photo--4 { width: 80px; height: 100px; }
+      .quote-deco { display: none; }
     }
 
     @media (prefers-reduced-motion: reduce) {
-      .faixa-link,
-      .titulo-faixa__destaque,
-      .titulo-faixa__linha,
-      .btn-faixa,
-      .faixa-link > div {
-        transition: none !important;
-      }
-
-      .links-grid {
-        scroll-snap-type: none;
-      }
+      .card, .card__btn { transition: none; }
+      html { scroll-behavior: auto; }
     }
   </style>
 </head>
-<body class="bg-zinc-950 text-white overflow-x-hidden md:overflow-hidden antialiased flex flex-col min-h-[100dvh]">
+<body>
 
-  <header class="flex flex-col items-center justify-center py-6 px-4 shrink-0 border-b border-zinc-800 pt-[max(1.5rem,env(safe-area-inset-top))]">
-    <img
-      src="assets/rafael.jpeg"
-      alt="Rafael Tonietto"
-      width="128"
-      height="128"
-      decoding="async"
-      class="w-28 h-28 md:w-32 md:h-32 rounded-full object-cover ring-2 ring-[#e85d22]/60 shadow-lg shadow-black/50"
-    />
-    <h1 class="titulo-header mt-4 text-xl md:text-2xl">
-      Rafael Tonietto
-    </h1>
-    <p class="mt-1 text-sm font-medium text-zinc-400 tracking-wide">Links oficiais</p>
-  </header>
+  <div class="page-bg" aria-hidden="true">
+    <div class="grid-overlay"></div>
+    <img class="bg-photo bg-photo--1" src="assets/rafael.jpeg" alt="" width="140" height="180" loading="lazy" decoding="async">
+    <img class="bg-photo bg-photo--2" src="assets/rafael.jpeg" alt="" width="100" height="130" loading="lazy" decoding="async">
+    <img class="bg-photo bg-photo--3" src="assets/rafael.jpeg" alt="" width="120" height="150" loading="lazy" decoding="async">
+    <img class="bg-photo bg-photo--4" src="assets/rafael.jpeg" alt="" width="130" height="170" loading="lazy" decoding="async">
+    <img class="bg-photo bg-photo--5" src="assets/rafael.jpeg" alt="" width="90" height="115" loading="lazy" decoding="async">
+    <img class="bg-photo bg-photo--6" src="assets/rafael.jpeg" alt="" width="110" height="140" loading="lazy" decoding="async">
+  </div>
 
-  <main class="links-grid w-full flex-1 md:flex md:flex-row min-h-0 overflow-y-auto md:overflow-hidden">
-    
-    <a href="https://pos.personaltraineracademy.com.br/ag-rt/" target="_blank" rel="noopener noreferrer"
-       aria-label="AG-RT — Redes sociais para vender consultoria online"
-       class="faixa-link group relative flex items-stretch md:flex-1 md:hover:flex-[1.5] bg-cover bg-center border-b border-zinc-800 md:border-b-0" 
-       style="background-image: url('https://images.unsplash.com/photo-1574680096145-d05b474e2155?q=80&w=1469&auto=format&fit=crop');">
-      <div class="absolute inset-0 bg-zinc-950/85 md:group-hover:bg-orange-950/60 transition-colors duration-700 z-0"></div>
-      <div class="faixa-conteudo relative z-10 p-4 flex flex-col items-center justify-center transform transition-transform duration-500 md:group-hover:-translate-y-2 w-full h-full">
-        <h2 class="titulo-faixa text-2xl md:text-4xl mb-4 text-center">
-          <span class="titulo-faixa__linha">Redes sociais</span>
-          <span class="titulo-faixa__destaque titulo-faixa__destaque--laranja">AG-RT</span>
-        </h2>
-        <span class="btn-faixa btn-faixa--laranja" aria-hidden="true">Acessar</span>
-      </div>
-    </a>
+  <p class="quote-deco" aria-hidden="true">Eu quero ver o que acontece se eu não desistir</p>
 
-    <a href="https://form.respondi.app/HDY4fKbN" target="_blank" rel="noopener noreferrer"
-       aria-label="Mentoria Scala — Inscrever-se"
-       class="faixa-link group relative flex items-stretch md:flex-1 md:hover:flex-[1.5] bg-cover bg-center border-b border-zinc-800 md:border-b-0 md:border-l" 
-       style="background-image: url('https://images.unsplash.com/photo-1534438327276-14e5300c3a48?q=80&w=1470&auto=format&fit=crop');">
-      <div class="absolute inset-0 bg-black/90 md:group-hover:bg-orange-900/40 transition-colors duration-700 z-0"></div>
-      <div class="faixa-conteudo relative z-10 p-4 flex flex-col items-center justify-center transform transition-transform duration-500 md:group-hover:-translate-y-2 w-full h-full">
-        <h2 class="titulo-faixa text-2xl md:text-4xl mb-4 text-center">
-          <span class="titulo-faixa__linha">Mentoria</span>
-          <span class="titulo-faixa__destaque titulo-faixa__destaque--scala">Scala</span>
-        </h2>
-        <span class="btn-faixa btn-faixa--scala" aria-hidden="true">Aplicar</span>
-      </div>
-    </a>
+  <div class="page">
+    <div class="layout">
+      <aside class="hero-side hero-side--left" aria-hidden="true">
+        <img src="assets/rafael.jpeg" alt="" width="220" height="420" loading="lazy" decoding="async">
+      </aside>
 
-    <a href="https://pos.personaltraineracademy.com.br/mco/" target="_blank" rel="noopener noreferrer"
-       aria-label="Mapa da Consultoria Online — MCO"
-       class="faixa-link group relative flex items-stretch md:flex-1 md:hover:flex-[1.5] bg-cover bg-center border-b border-zinc-800 md:border-b-0 md:border-l" 
-       style="background-image: url('https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?q=80&w=1470&auto=format&fit=crop');">
-      <div class="absolute inset-0 bg-zinc-950/90 md:group-hover:bg-yellow-950/40 transition-colors duration-700 z-0"></div>
-      <div class="faixa-conteudo relative z-10 p-4 flex flex-col items-center justify-center transform transition-transform duration-500 md:group-hover:-translate-y-2 w-full h-full">
-        <h2 class="titulo-faixa titulo-faixa--longo text-2xl md:text-3xl lg:text-4xl mb-4 text-center">
-          <span class="titulo-faixa__linha">Mapa da</span>
-          <span class="titulo-faixa__destaque titulo-faixa__destaque--amarelo">Consultoria Online</span>
-        </h2>
-        <span class="btn-faixa btn-faixa--amarelo" aria-hidden="true">Acessar</span>
-      </div>
-    </a>
+      <main class="center">
+        <header class="header">
+          <div class="avatar-wrap">
+            <img class="avatar" src="assets/rafael.jpeg" alt="Rafael Tonietto" width="96" height="96" decoding="async">
+          </div>
+          <h1 class="header__title">Links importantes</h1>
+          <p class="header__subtitle">@rafaeltonietto · Personal Trainer Academy</p>
+        </header>
 
-    <a href="https://editorapta.com.br/raio-x-do-instagram/" target="_blank" rel="noopener noreferrer"
-       aria-label="Raio-X do Instagram"
-       class="faixa-link group relative flex items-stretch md:flex-1 md:hover:flex-[1.5] bg-cover bg-center border-b border-zinc-800 md:border-b-0 md:border-l" 
-       style="background-image: url('https://images.unsplash.com/photo-1611162617474-5b21e879e113?q=80&w=1374&auto=format&fit=crop');">
-      <div class="absolute inset-0 bg-black/90 md:group-hover:bg-fuchsia-950/60 transition-colors duration-700 z-0"></div>
-      <div class="faixa-conteudo relative z-10 p-4 flex flex-col items-center justify-center transform transition-transform duration-500 md:group-hover:-translate-y-2 w-full h-full">
-        <h2 class="titulo-faixa text-2xl md:text-4xl mb-4 text-center">
-          <span class="titulo-faixa__linha">Raio-X do</span>
-          <span class="titulo-faixa__destaque titulo-faixa__destaque--instagram">Instagram</span>
-        </h2>
-        <span class="btn-faixa btn-faixa--instagram" aria-hidden="true">Acessar</span>
-      </div>
-    </a>
+        <div class="cards">
 
-    <a href="https://editorapta.com.br/bmr/?utm_source=LinkTreeRafa" target="_blank" rel="noopener noreferrer"
-       aria-label="Guia de Marketing — BMR"
-       class="faixa-link group relative flex items-stretch md:flex-1 md:hover:flex-[1.5] bg-cover bg-center border-b border-zinc-800 md:border-b-0 md:border-l" 
-       style="background-image: url('https://images.unsplash.com/photo-1532012197267-da84d127e765?q=80&w=1374&auto=format&fit=crop');">
-      <div class="absolute inset-0 bg-[#050b14]/90 md:group-hover:bg-[#00205b]/60 transition-colors duration-700 z-0"></div>
-      <div class="faixa-conteudo relative z-10 p-4 flex flex-col items-center justify-center transform transition-transform duration-500 md:group-hover:-translate-y-2 w-full h-full">
-        <h2 class="titulo-faixa text-2xl md:text-4xl mb-4 text-center">
-          <span class="titulo-faixa__linha">Guia de</span>
-          <span class="titulo-faixa__destaque titulo-faixa__destaque--azul">Marketing</span>
-        </h2>
-        <span class="btn-faixa btn-faixa--azul" aria-hidden="true">Acessar</span>
-      </div>
-    </a>
+          <a href="https://pos.personaltraineracademy.com.br/ag-rt/" target="_blank" rel="noopener noreferrer" class="card"
+             aria-label="AG-RT — Redes sociais para vender consultoria online">
+            <div class="card__brand card__brand--serif">AG-RT</div>
+            <p class="card__text">
+              Redes sociais para vender consultoria online. Aprenda a se posicionar do jeito certo e
+              <strong>transformar seu perfil em uma máquina de novos clientes</strong>.
+            </p>
+            <span class="card__btn" aria-hidden="true">Clique aqui para saber mais</span>
+          </a>
 
-  </main>
+          <a href="https://form.respondi.app/HDY4fKbN" target="_blank" rel="noopener noreferrer" class="card"
+             aria-label="Mentoria Scala — Inscrever-se">
+            <div class="card__brand card__brand--oswald">
+              <span class="muted">Mentoria</span> <span class="accent">Scala</span>
+            </div>
+            <p class="card__text">
+              Mentoria exclusiva para escalar sua consultoria online. Sistema validado para
+              <strong>atrair, converter e reter clientes em escala</strong>.
+            </p>
+            <span class="card__btn card__btn--apply" aria-hidden="true">Clique aqui para aplicar</span>
+          </a>
+
+          <a href="https://pos.personaltraineracademy.com.br/mco/" target="_blank" rel="noopener noreferrer" class="card"
+             aria-label="Mapa da Consultoria Online — MCO">
+            <div class="card__brand">
+              <span class="card__brand--label">Mapa da</span>
+              <div class="card__brand--big">MCO<span>Consultoria Online</span></div>
+            </div>
+            <p class="card__text">
+              O mapa completo da consultoria online para personal trainers. Domine cada etapa e
+              <strong>construa um negócio digital previsível</strong>.
+            </p>
+            <span class="card__btn" aria-hidden="true">Clique aqui para saber mais</span>
+          </a>
+
+          <a href="https://editorapta.com.br/raio-x-do-instagram/" target="_blank" rel="noopener noreferrer" class="card"
+             aria-label="Raio-X do Instagram">
+            <div class="card__brand card__brand--oswald">
+              <span class="muted">Raio-X do</span> <span class="accent">Instagram</span>
+            </div>
+            <p class="card__text">
+              Diagnóstico completo do seu perfil. Descubra como produzir conteúdo que
+              <strong>o algoritmo não consegue ignorar</strong>.
+            </p>
+            <span class="card__btn" aria-hidden="true">Clique aqui para saber mais</span>
+          </a>
+
+          <a href="https://editorapta.com.br/bmr/?utm_source=LinkTreeRafa" target="_blank" rel="noopener noreferrer" class="card"
+             aria-label="Guia de Marketing — BMR">
+            <div class="card__brand card__brand--oswald">
+              <span class="muted">Guia de</span> <span class="accent">Marketing</span>
+            </div>
+            <p class="card__text">
+              Estratégias de marketing validadas para personal trainers. Aprenda a
+              <strong>atrair e converter clientes</strong> com método comprovado.
+            </p>
+            <span class="card__btn" aria-hidden="true">Clique aqui para saber mais</span>
+          </a>
+
+        </div>
+      </main>
+
+      <aside class="hero-side hero-side--right" aria-hidden="true">
+        <img src="assets/rafael.jpeg" alt="" width="220" height="420" loading="lazy" decoding="async">
+      </aside>
+    </div>
+  </div>
 
 </body>
 </html>
