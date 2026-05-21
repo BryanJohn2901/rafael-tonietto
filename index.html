@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="theme-color" content="#09090b">
+  <meta name="description" content="Links oficiais de Rafael Tonietto — Personal Trainer Academy.">
+  <title>Rafael Tonietto | Links Oficiais</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Oswald:wght@500;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    html {
+      -webkit-text-size-adjust: 100%;
+    }
+
+    body {
+      font-family: 'Inter', system-ui, sans-serif;
+    }
+
+    .faixa-link {
+      -webkit-tap-highlight-color: transparent;
+      transition: flex 0.7s cubic-bezier(0.25, 0.8, 0.25, 1);
+    }
+
+    .faixa-link:focus-visible {
+      outline: 2px solid #e85d22;
+      outline-offset: -2px;
+      z-index: 10;
+    }
+
+    .btn-faixa {
+      pointer-events: none;
+    }
+
+    @media (max-width: 767px) {
+      body {
+        height: 100dvh;
+        max-height: 100dvh;
+        overflow: hidden;
+      }
+
+      .links-grid {
+        display: flex;
+        flex-direction: column;
+        scroll-snap-type: y mandatory;
+        -webkit-overflow-scrolling: touch;
+        overscroll-behavior-y: contain;
+        padding-bottom: env(safe-area-inset-bottom, 0px);
+      }
+
+      .links-grid .faixa-link {
+        width: 100%;
+        flex: none !important;
+        height: 50dvh;
+        min-height: 50dvh;
+        scroll-snap-align: start;
+        scroll-snap-stop: always;
+      }
+
+      .links-grid .faixa-conteudo {
+        padding: 1rem 1.25rem;
+        padding-bottom: max(1rem, env(safe-area-inset-bottom));
+        justify-content: center;
+        height: 100%;
+        gap: 0.5rem;
+      }
+
+      .links-grid .titulo-faixa {
+        font-size: 1.35rem;
+        margin-bottom: 0.5rem;
+      }
+
+      .links-grid .titulo-faixa--longo {
+        font-size: 1.05rem;
+      }
+
+      .links-grid .titulo-faixa--longo .titulo-faixa__destaque {
+        font-size: 0.82em;
+        line-height: 1.15;
+      }
+
+      .links-grid .btn-faixa {
+        min-width: 11rem;
+        padding: 0.85rem 2rem;
+        font-size: 0.8125rem;
+      }
+
+      .faixa-link:active > div:first-child {
+        opacity: 0.75;
+      }
+    }
+
+    @media (min-width: 768px) {
+      .faixa-link {
+        min-width: 0;
+      }
+    }
+
+    .titulo-header {
+      font-family: 'Oswald', sans-serif;
+      font-weight: 600;
+      letter-spacing: 0.02em;
+      text-transform: uppercase;
+      color: #fafafa;
+    }
+
+    .titulo-faixa {
+      line-height: 1.1;
+    }
+
+    .titulo-faixa__linha {
+      display: block;
+      font-family: 'Inter', system-ui, sans-serif;
+      font-size: 0.5em;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      color: rgba(255, 255, 255, 0.65);
+      margin-bottom: 0.35em;
+      text-transform: uppercase;
+    }
+
+    .titulo-faixa__destaque {
+      display: block;
+      font-family: 'Oswald', sans-serif;
+      font-size: 1em;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+      text-transform: uppercase;
+      position: relative;
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      filter: drop-shadow(0 4px 20px var(--glow, rgba(255, 255, 255, 0.15)));
+      transition: filter 0.5s ease, transform 0.5s ease;
+    }
+
+    @media (hover: hover) {
+      .group:hover .titulo-faixa__destaque {
+        filter: drop-shadow(0 6px 32px var(--glow, rgba(255, 255, 255, 0.4))) brightness(1.12);
+        transform: scale(1.03);
+      }
+
+      .group:hover .titulo-faixa__linha {
+        color: rgba(255, 255, 255, 0.9);
+      }
+
+      .group:hover .titulo-faixa__destaque--instagram {
+        background-position: right center;
+      }
+
+      .group:hover .btn-faixa {
+        transform: translateY(-1px);
+      }
+
+      .group:hover .btn-faixa--laranja {
+        background-color: #fff;
+        color: #e85d22;
+        box-shadow: 0 6px 24px rgba(255, 255, 255, 0.2);
+      }
+
+      .group:hover .btn-faixa--scala {
+        background-color: #fff;
+        color: #ff6600;
+        box-shadow: 0 6px 24px rgba(255, 255, 255, 0.2);
+      }
+
+      .group:hover .btn-faixa--amarelo {
+        background-color: #fff;
+        color: #0a0a0a;
+        box-shadow: 0 6px 24px rgba(255, 255, 255, 0.2);
+      }
+
+      .group:hover .btn-faixa--instagram {
+        filter: brightness(1.1);
+        box-shadow: 0 6px 28px rgba(236, 72, 153, 0.5);
+      }
+
+      .group:hover .btn-faixa--azul {
+        background-color: #fff;
+        color: #00205b;
+        border-color: #fff;
+        box-shadow: 0 6px 24px rgba(255, 255, 255, 0.15);
+      }
+    }
+
+    .titulo-faixa__linha {
+      transition: color 0.5s ease, letter-spacing 0.5s ease;
+    }
+
+    .titulo-faixa__destaque--laranja {
+      --glow: rgba(232, 93, 34, 0.55);
+      background-image: linear-gradient(165deg, #fff4ed 0%, #ffb380 28%, #e85d22 55%, #9a3412 100%);
+    }
+
+    .titulo-faixa__destaque--scala {
+      --glow: rgba(255, 102, 0, 0.55);
+      background-image: linear-gradient(165deg, #fff7ed 0%, #fdba74 28%, #ff6600 55%, #c2410c 100%);
+    }
+
+    .titulo-faixa__destaque--amarelo {
+      --glow: rgba(255, 204, 0, 0.5);
+      background-image: linear-gradient(165deg, #fffbeb 0%, #fde68a 28%, #ffcc00 55%, #a16207 100%);
+    }
+
+    .titulo-faixa__destaque--instagram {
+      --glow: rgba(236, 72, 153, 0.5);
+      background-image: linear-gradient(120deg, #fce7f3 0%, #f472b6 25%, #fb923c 55%, #f97316 85%, #ea580c 100%);
+      background-size: 200% auto;
+    }
+
+    .titulo-faixa__destaque--azul {
+      --glow: rgba(77, 166, 255, 0.55);
+      background-image: linear-gradient(165deg, #eff6ff 0%, #93c5fd 28%, #4da6ff 55%, #1e3a8a 100%);
+    }
+
+    .btn-faixa {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 12.5rem;
+      padding: 0.95rem 2.5rem;
+      border-radius: 6px;
+      font-family: 'Inter', system-ui, sans-serif;
+      font-size: 0.9375rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      line-height: 1;
+      transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
+    }
+
+    @media (min-width: 768px) {
+      .btn-faixa {
+        min-width: 14.5rem;
+        padding: 1.1rem 3rem;
+        font-size: 1.0625rem;
+      }
+    }
+
+    .btn-faixa--laranja {
+      background-color: #e85d22;
+      color: #fff;
+      box-shadow: 0 4px 20px rgba(232, 93, 34, 0.35);
+    }
+
+    .btn-faixa--scala {
+      background-color: #ff6600;
+      color: #fff;
+      box-shadow: 0 4px 20px rgba(255, 102, 0, 0.35);
+    }
+
+    .btn-faixa--amarelo {
+      background-color: #ffcc00;
+      color: #0a0a0a;
+      box-shadow: 0 4px 20px rgba(255, 204, 0, 0.35);
+    }
+
+    .btn-faixa--instagram {
+      background: linear-gradient(90deg, #db2777, #ea580c);
+      color: #fff;
+      box-shadow: 0 4px 20px rgba(236, 72, 153, 0.4);
+    }
+
+    .btn-faixa--azul {
+      background-color: #00205b;
+      color: #fff;
+      border: 1px solid #4da6ff;
+      box-shadow: 0 4px 20px rgba(0, 32, 91, 0.5);
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .faixa-link,
+      .titulo-faixa__destaque,
+      .titulo-faixa__linha,
+      .btn-faixa,
+      .faixa-link > div {
+        transition: none !important;
+      }
+
+      .links-grid {
+        scroll-snap-type: none;
+      }
+    }
+  </style>
+</head>
+<body class="bg-zinc-950 text-white overflow-x-hidden md:overflow-hidden antialiased flex flex-col min-h-[100dvh]">
+
+  <header class="flex flex-col items-center justify-center py-6 px-4 shrink-0 border-b border-zinc-800 pt-[max(1.5rem,env(safe-area-inset-top))]">
+    <img
+      src="assets/rafael.jpeg"
+      alt="Rafael Tonietto"
+      width="128"
+      height="128"
+      decoding="async"
+      class="w-28 h-28 md:w-32 md:h-32 rounded-full object-cover ring-2 ring-[#e85d22]/60 shadow-lg shadow-black/50"
+    />
+    <h1 class="titulo-header mt-4 text-xl md:text-2xl">
+      Rafael Tonietto
+    </h1>
+    <p class="mt-1 text-sm font-medium text-zinc-400 tracking-wide">Links oficiais</p>
+  </header>
+
+  <main class="links-grid w-full flex-1 md:flex md:flex-row min-h-0 overflow-y-auto md:overflow-hidden">
+    
+    <a href="https://pos.personaltraineracademy.com.br/ag-rt/" target="_blank" rel="noopener noreferrer"
+       aria-label="AG-RT — Redes sociais para vender consultoria online"
+       class="faixa-link group relative flex items-stretch md:flex-1 md:hover:flex-[1.5] bg-cover bg-center border-b border-zinc-800 md:border-b-0" 
+       style="background-image: url('https://images.unsplash.com/photo-1574680096145-d05b474e2155?q=80&w=1469&auto=format&fit=crop');">
+      <div class="absolute inset-0 bg-zinc-950/85 md:group-hover:bg-orange-950/60 transition-colors duration-700 z-0"></div>
+      <div class="faixa-conteudo relative z-10 p-4 flex flex-col items-center justify-center transform transition-transform duration-500 md:group-hover:-translate-y-2 w-full h-full">
+        <h2 class="titulo-faixa text-2xl md:text-4xl mb-4 text-center">
+          <span class="titulo-faixa__linha">Redes sociais</span>
+          <span class="titulo-faixa__destaque titulo-faixa__destaque--laranja">AG-RT</span>
+        </h2>
+        <span class="btn-faixa btn-faixa--laranja" aria-hidden="true">Acessar</span>
+      </div>
+    </a>
+
+    <a href="https://form.respondi.app/HDY4fKbN" target="_blank" rel="noopener noreferrer"
+       aria-label="Mentoria Scala — Inscrever-se"
+       class="faixa-link group relative flex items-stretch md:flex-1 md:hover:flex-[1.5] bg-cover bg-center border-b border-zinc-800 md:border-b-0 md:border-l" 
+       style="background-image: url('https://images.unsplash.com/photo-1534438327276-14e5300c3a48?q=80&w=1470&auto=format&fit=crop');">
+      <div class="absolute inset-0 bg-black/90 md:group-hover:bg-orange-900/40 transition-colors duration-700 z-0"></div>
+      <div class="faixa-conteudo relative z-10 p-4 flex flex-col items-center justify-center transform transition-transform duration-500 md:group-hover:-translate-y-2 w-full h-full">
+        <h2 class="titulo-faixa text-2xl md:text-4xl mb-4 text-center">
+          <span class="titulo-faixa__linha">Mentoria</span>
+          <span class="titulo-faixa__destaque titulo-faixa__destaque--scala">Scala</span>
+        </h2>
+        <span class="btn-faixa btn-faixa--scala" aria-hidden="true">Aplicar</span>
+      </div>
+    </a>
+
+    <a href="https://pos.personaltraineracademy.com.br/mco/" target="_blank" rel="noopener noreferrer"
+       aria-label="Mapa da Consultoria Online — MCO"
+       class="faixa-link group relative flex items-stretch md:flex-1 md:hover:flex-[1.5] bg-cover bg-center border-b border-zinc-800 md:border-b-0 md:border-l" 
+       style="background-image: url('https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?q=80&w=1470&auto=format&fit=crop');">
+      <div class="absolute inset-0 bg-zinc-950/90 md:group-hover:bg-yellow-950/40 transition-colors duration-700 z-0"></div>
+      <div class="faixa-conteudo relative z-10 p-4 flex flex-col items-center justify-center transform transition-transform duration-500 md:group-hover:-translate-y-2 w-full h-full">
+        <h2 class="titulo-faixa titulo-faixa--longo text-2xl md:text-3xl lg:text-4xl mb-4 text-center">
+          <span class="titulo-faixa__linha">Mapa da</span>
+          <span class="titulo-faixa__destaque titulo-faixa__destaque--amarelo">Consultoria Online</span>
+        </h2>
+        <span class="btn-faixa btn-faixa--amarelo" aria-hidden="true">Acessar</span>
+      </div>
+    </a>
+
+    <a href="https://editorapta.com.br/raio-x-do-instagram/" target="_blank" rel="noopener noreferrer"
+       aria-label="Raio-X do Instagram"
+       class="faixa-link group relative flex items-stretch md:flex-1 md:hover:flex-[1.5] bg-cover bg-center border-b border-zinc-800 md:border-b-0 md:border-l" 
+       style="background-image: url('https://images.unsplash.com/photo-1611162617474-5b21e879e113?q=80&w=1374&auto=format&fit=crop');">
+      <div class="absolute inset-0 bg-black/90 md:group-hover:bg-fuchsia-950/60 transition-colors duration-700 z-0"></div>
+      <div class="faixa-conteudo relative z-10 p-4 flex flex-col items-center justify-center transform transition-transform duration-500 md:group-hover:-translate-y-2 w-full h-full">
+        <h2 class="titulo-faixa text-2xl md:text-4xl mb-4 text-center">
+          <span class="titulo-faixa__linha">Raio-X do</span>
+          <span class="titulo-faixa__destaque titulo-faixa__destaque--instagram">Instagram</span>
+        </h2>
+        <span class="btn-faixa btn-faixa--instagram" aria-hidden="true">Acessar</span>
+      </div>
+    </a>
+
+    <a href="https://editorapta.com.br/bmr/?utm_source=LinkTreeRafa" target="_blank" rel="noopener noreferrer"
+       aria-label="Guia de Marketing — BMR"
+       class="faixa-link group relative flex items-stretch md:flex-1 md:hover:flex-[1.5] bg-cover bg-center border-b border-zinc-800 md:border-b-0 md:border-l" 
+       style="background-image: url('https://images.unsplash.com/photo-1532012197267-da84d127e765?q=80&w=1374&auto=format&fit=crop');">
+      <div class="absolute inset-0 bg-[#050b14]/90 md:group-hover:bg-[#00205b]/60 transition-colors duration-700 z-0"></div>
+      <div class="faixa-conteudo relative z-10 p-4 flex flex-col items-center justify-center transform transition-transform duration-500 md:group-hover:-translate-y-2 w-full h-full">
+        <h2 class="titulo-faixa text-2xl md:text-4xl mb-4 text-center">
+          <span class="titulo-faixa__linha">Guia de</span>
+          <span class="titulo-faixa__destaque titulo-faixa__destaque--azul">Marketing</span>
+        </h2>
+        <span class="btn-faixa btn-faixa--azul" aria-hidden="true">Acessar</span>
+      </div>
+    </a>
+
+  </main>
+
+</body>
+</html>
