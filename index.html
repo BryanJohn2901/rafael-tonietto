@@ -129,22 +129,50 @@
     }
 
     .avatar-wrap {
-      display: inline-block;
-      padding: 4px;
+      --avatar-size: 120px;
+      --ring-gap: 3px;
+      position: relative;
+      display: inline-grid;
+      place-items: center;
+      width: calc(var(--avatar-size) + 12px);
+      height: calc(var(--avatar-size) + 12px);
       border-radius: 50%;
-      background: linear-gradient(135deg, #059669, #10b981, #047857);
       margin-bottom: 1.25rem;
-      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+      isolation: isolate;
+    }
+
+    .avatar-wrap::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: 50%;
+      background: conic-gradient(
+        from 200deg,
+        #feda75 0%,
+        #fa7e1e 20%,
+        #d62976 40%,
+        #962fbf 60%,
+        #4f5bd5 80%,
+        #feda75 100%
+      );
+      animation: story-ring-spin 5s linear infinite;
+    }
+
+    @keyframes story-ring-spin {
+      to { transform: rotate(360deg); }
     }
 
     .avatar {
+      position: relative;
+      z-index: 1;
       display: block;
-      width: 120px;
-      height: 120px;
+      width: var(--avatar-size);
+      height: var(--avatar-size);
       border-radius: 50%;
       object-fit: cover;
       object-position: center top;
-      border: 3px solid #000;
+      border: var(--ring-gap) solid #000;
+      box-sizing: content-box;
     }
 
     .header__title {
@@ -349,7 +377,7 @@
         padding-top: max(4.5rem, calc(env(safe-area-inset-top) + 3rem));
       }
       .header { padding-top: 2rem; }
-      .avatar { width: 144px; height: 144px; }
+      .avatar-wrap { --avatar-size: 144px; }
       .header__title { font-size: 2rem; }
       .cards { gap: 1.125rem; }
       .card { padding: 1.75rem 1.65rem 1.5rem; }
@@ -366,12 +394,13 @@
         padding-top: max(3rem, calc(env(safe-area-inset-top) + 2rem));
       }
       .header { padding-top: 1.5rem; }
-      .avatar { width: 112px; height: 112px; }
+      .avatar-wrap { --avatar-size: 112px; }
       .quote-deco { display: none; }
     }
 
     @media (prefers-reduced-motion: reduce) {
       html { scroll-behavior: auto; }
+      .avatar-wrap::before { animation: none; }
       .card, .card__cta, .card__cta-icon { transition: none; }
     }
   </style>
