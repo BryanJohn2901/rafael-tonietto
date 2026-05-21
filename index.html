@@ -4,19 +4,16 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <meta name="theme-color" content="#000000">
-  <meta name="description" content="Links oficiais de Rafael Tonietto — Personal Trainer Academy.">
   <title>Rafael Tonietto | Links Oficiais</title>
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;600&family=Inter:wght@400;500;600;700&family=Oswald:wght@500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet">
+
   <style>
+    /* RESET E BASE */
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-    html {
-      -webkit-text-size-adjust: 100%;
-      scroll-behavior: smooth;
-    }
-
+    html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
     body {
       font-family: 'Inter', system-ui, sans-serif;
       background: #000;
@@ -26,14 +23,8 @@
       -webkit-font-smoothing: antialiased;
     }
 
-    /* —— Background —— */
-    .page-bg {
-      position: fixed;
-      inset: 0;
-      z-index: 0;
-      pointer-events: none;
-    }
-
+    /* —— Background Grid e Fotos —— */
+    .page-bg { position: fixed; inset: 0; z-index: 0; pointer-events: none; }
     .grid-overlay {
       position: absolute;
       inset: 0;
@@ -42,6 +33,7 @@
         linear-gradient(90deg, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
       background-size: 48px 48px;
       mask-image: radial-gradient(ellipse 80% 70% at 50% 40%, black 20%, transparent 75%);
+      -webkit-mask-image: radial-gradient(ellipse 80% 70% at 50% 40%, black 20%, transparent 75%);
     }
 
     .bg-photo {
@@ -51,7 +43,6 @@
       filter: grayscale(100%) contrast(1.1);
       opacity: 0.12;
     }
-
     .bg-photo--1 { width: 140px; height: 180px; top: 8%; left: 4%; transform: rotate(-6deg); }
     .bg-photo--2 { width: 100px; height: 130px; top: 35%; left: 12%; opacity: 0.08; }
     .bg-photo--3 { width: 120px; height: 150px; bottom: 15%; left: 6%; transform: rotate(4deg); opacity: 0.1; }
@@ -59,7 +50,7 @@
     .bg-photo--5 { width: 90px; height: 115px; top: 50%; right: 10%; opacity: 0.08; }
     .bg-photo--6 { width: 110px; height: 140px; bottom: 10%; right: 4%; transform: rotate(-3deg); opacity: 0.1; }
 
-    /* —— Layout —— */
+    /* —— Layout Central —— */
     .page {
       position: relative;
       z-index: 1;
@@ -69,7 +60,6 @@
       align-items: center;
       padding: max(1.5rem, env(safe-area-inset-top)) 1rem max(2.5rem, env(safe-area-inset-bottom));
     }
-
     .layout {
       display: flex;
       align-items: flex-start;
@@ -78,224 +68,99 @@
       width: 100%;
       max-width: 1200px;
     }
+    .center { flex: 1; width: 100%; max-width: 520px; min-width: 0; }
 
-    .hero-side {
-      display: none;
-      flex-shrink: 0;
-      width: 220px;
-      padding-top: 6rem;
-    }
-
+    /* —— Imagens Laterais (Desktop) —— */
+    .hero-side { display: none; flex-shrink: 0; width: 220px; padding-top: 6rem; }
     .hero-side img {
-      width: 100%;
-      height: auto;
-      max-height: 420px;
-      object-fit: cover;
-      object-position: center top;
-      filter: grayscale(100%) contrast(1.15);
-      border-radius: 2px;
+      width: 100%; height: auto; max-height: 420px;
+      object-fit: cover; object-position: center top;
+      filter: grayscale(100%) contrast(1.15); border-radius: 4px;
     }
-
     .hero-side--left { padding-right: 1.5rem; }
     .hero-side--right { padding-left: 1.5rem; }
 
-    .center {
-      flex: 1;
-      width: 100%;
-      max-width: 520px;
-      min-width: 0;
-    }
-
-    /* —— Quote decorativa —— */
+    /* —— Citação (Canto Superior Direito) —— */
     .quote-deco {
-      position: fixed;
-      top: max(1.25rem, env(safe-area-inset-top));
-      right: 1.5rem;
-      max-width: 200px;
-      font-family: 'Caveat', cursive;
-      font-size: 1.15rem;
-      line-height: 1.3;
-      color: rgba(255, 255, 255, 0.55);
-      text-align: right;
-      z-index: 2;
-      pointer-events: none;
-      display: none;
+      position: fixed; top: max(1.25rem, env(safe-area-inset-top)); right: 1.5rem; max-width: 200px;
+      font-family: 'Caveat', cursive; font-size: 1.15rem; line-height: 1.3;
+      color: rgba(255, 255, 255, 0.55); text-align: right; z-index: 2; pointer-events: none; display: none;
     }
 
-    /* —— Header —— */
-    .header {
-      text-align: center;
-      margin-bottom: 2rem;
-    }
-
+    /* —— Header (Avatar e Títulos) —— */
+    .header { text-align: center; margin-bottom: 2rem; }
     .avatar-wrap {
-      display: inline-block;
-      padding: 3px;
-      border-radius: 50%;
-      background: linear-gradient(135deg, #ff6600, #e85d22, #db2777);
+      display: inline-block; padding: 3px; border-radius: 50%;
+      background: linear-gradient(135deg, #059669, #10b981, #047857);
       margin-bottom: 1rem;
     }
+    .avatar { display: block; width: 88px; height: 88px; border-radius: 50%; object-fit: cover; border: 3px solid #000; }
+    .header__title { font-family: 'Oswald', sans-serif; font-size: 1.75rem; font-weight: 700; letter-spacing: 0.02em; color: #fff; line-height: 1.2; }
+    .header__subtitle { margin-top: 0.35rem; font-size: 0.875rem; font-weight: 500; color: rgba(255, 255, 255, 0.7); letter-spacing: 0.04em; }
 
-    .avatar {
-      display: block;
-      width: 88px;
-      height: 88px;
-      border-radius: 50%;
-      object-fit: cover;
-      border: 3px solid #000;
-    }
+    /* —— Sistema de Cores por Card —— */
+    .theme-agrt   { --brand-color: #e85d22; --brand-hover: #f96d32; --brand-rgba: rgba(232, 93, 34, 0.35); }
+    .theme-scala  { --brand-color: #ff6600; --brand-hover: #ff7722; --brand-rgba: rgba(255, 102, 0, 0.35); }
+    .theme-mco    { --brand-color: #ffcc00; --brand-hover: #ffdd33; --brand-rgba: rgba(255, 204, 0, 0.35); --btn-text: #000; }
+    .theme-raiox  { --brand-color: #ec4899; --brand-hover: #f472b6; --brand-rgba: rgba(236, 72, 153, 0.35); }
+    .theme-bmr    { --brand-color: #4da6ff; --brand-hover: #66b3ff; --brand-rgba: rgba(77, 166, 255, 0.35); }
 
-    .header__title {
-      font-family: 'Oswald', sans-serif;
-      font-size: 1.75rem;
-      font-weight: 700;
-      letter-spacing: 0.02em;
-      color: #ff6600;
-      text-transform: none;
-      line-height: 1.2;
-    }
-
-    .header__subtitle {
-      margin-top: 0.35rem;
-      font-size: 0.875rem;
-      font-weight: 500;
-      color: rgba(255, 255, 255, 0.7);
-      letter-spacing: 0.04em;
-    }
-
-    /* —— Cards —— */
-    .cards {
-      display: flex;
-      flex-direction: column;
-      gap: 1.25rem;
-    }
-
+    /* —— Estilo dos Cards —— */
+    .cards { display: flex; flex-direction: column; gap: 1.25rem; }
     .card {
-      display: block;
-      text-decoration: none;
-      color: inherit;
-      padding: 1.5rem 1.35rem 1.35rem;
-      border-radius: 10px;
+      display: block; text-decoration: none; color: inherit;
+      padding: 1.5rem 1.35rem 1.35rem; border-radius: 10px;
       border: 1px solid rgba(255, 255, 255, 0.1);
       background: rgba(12, 12, 12, 0.75);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
+      backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
       -webkit-tap-highlight-color: transparent;
       transition: border-color 0.3s ease, background 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
     }
-
-    .card:focus-visible {
-      outline: 2px solid #ff6600;
-      outline-offset: 3px;
-    }
-
+    
+    .card:focus-visible { outline: 2px solid var(--brand-color); outline-offset: 3px; }
+    
     @media (hover: hover) {
       .card:hover {
-        border-color: rgba(255, 102, 0, 0.35);
+        border-color: var(--brand-rgba);
         background: rgba(20, 20, 20, 0.85);
         transform: translateY(-2px);
         box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5);
       }
-
       .card:hover .card__btn {
-        background: #ff7722;
-        box-shadow: 0 6px 24px rgba(255, 102, 0, 0.45);
+        background: var(--brand-hover);
+        box-shadow: 0 6px 24px var(--brand-rgba);
       }
     }
+    .card:active { transform: scale(0.99); }
 
-    .card:active {
-      transform: scale(0.99);
-    }
-
-    .card__brand {
-      margin-bottom: 0.85rem;
-      line-height: 1.15;
-    }
-
+    /* —— Tipografia das Marcas dentro dos Cards —— */
+    .card__brand { margin-bottom: 0.85rem; line-height: 1.15; }
     .card__brand--serif {
-      font-family: 'Playfair Display', Georgia, serif;
-      font-size: 1.65rem;
-      font-weight: 700;
-      font-style: italic;
-      letter-spacing: 0.06em;
-      background: linear-gradient(135deg, #fde68a 0%, #d4a574 40%, #b8860b 100%);
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
+      font-family: 'Playfair Display', Georgia, serif; font-size: 1.65rem; font-weight: 700; font-style: italic; letter-spacing: 0.06em;
+      color: var(--brand-color);
     }
-
-    .card__brand--oswald {
-      font-family: 'Oswald', sans-serif;
-      font-size: 1.5rem;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.04em;
-    }
-
-    .card__brand--oswald .accent { color: #ff6600; }
+    .card__brand--oswald { font-family: 'Oswald', sans-serif; font-size: 1.5rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.04em; }
+    .card__brand--oswald .accent { color: var(--brand-color); }
     .card__brand--oswald .muted { color: #fff; font-weight: 500; }
-
+    
     .card__brand--label {
-      font-family: 'Inter', sans-serif;
-      font-size: 0.7rem;
-      font-weight: 600;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      color: rgba(255, 255, 255, 0.5);
-      display: block;
-      margin-bottom: 0.25rem;
+      font-family: 'Inter', sans-serif; font-size: 0.7rem; font-weight: 600; letter-spacing: 0.14em;
+      text-transform: uppercase; color: rgba(255, 255, 255, 0.5); display: block; margin-bottom: 0.25rem;
     }
+    .card__brand--big { font-family: 'Oswald', sans-serif; font-size: 2.25rem; font-weight: 700; color: var(--brand-color); line-height: 1; }
+    .card__brand--big span { font-size: 0.45em; color: #fff; font-weight: 600; letter-spacing: 0.08em; display: block; margin-top: 0.15em; }
 
-    .card__brand--big {
-      font-family: 'Oswald', sans-serif;
-      font-size: 2.25rem;
-      font-weight: 700;
-      color: #ff6600;
-      line-height: 1;
-    }
-
-    .card__brand--big span {
-      font-size: 0.45em;
-      color: #fff;
-      font-weight: 600;
-      letter-spacing: 0.08em;
-      display: block;
-      margin-top: 0.15em;
-    }
-
-    .card__text {
-      font-size: 0.9rem;
-      line-height: 1.55;
-      color: rgba(255, 255, 255, 0.82);
-      margin-bottom: 1.15rem;
-    }
-
-    .card__text strong {
-      color: #fff;
-      font-weight: 600;
-    }
-
+    /* —— Textos e Botões —— */
+    .card__text { font-size: 0.9rem; line-height: 1.55; color: rgba(255, 255, 255, 0.82); margin-bottom: 1.15rem; }
+    .card__text strong { color: #fff; font-weight: 600; }
+    
     .card__btn {
-      display: inline-block;
-      width: 100%;
-      text-align: center;
-      padding: 0.85rem 1.25rem;
-      border-radius: 6px;
-      background: #ff6600;
-      color: #fff;
-      font-size: 0.875rem;
-      font-weight: 600;
-      letter-spacing: 0.02em;
-      pointer-events: none;
-      transition: background 0.3s ease, box-shadow 0.3s ease;
-      box-shadow: 0 4px 16px rgba(255, 102, 0, 0.3);
+      display: inline-block; width: 100%; text-align: center; padding: 0.85rem 1.25rem; border-radius: 6px;
+      background: var(--brand-color); color: var(--btn-text, #fff); font-size: 0.875rem; font-weight: 600;
+      letter-spacing: 0.02em; pointer-events: none; transition: background 0.3s ease, box-shadow 0.3s ease;
     }
 
-    .card__btn--apply {
-      background: #ff6600;
-    }
-
-    /* —— Responsive —— */
+    /* —— Responsivo —— */
     @media (min-width: 900px) {
       .hero-side { display: block; }
       .quote-deco { display: block; }
@@ -304,16 +169,10 @@
       .card { padding: 1.65rem 1.5rem 1.5rem; }
       .card__text { font-size: 0.9375rem; }
     }
-
     @media (max-width: 599px) {
       .bg-photo { opacity: 0.06; }
       .bg-photo--1, .bg-photo--4 { width: 80px; height: 100px; }
       .quote-deco { display: none; }
-    }
-
-    @media (prefers-reduced-motion: reduce) {
-      .card, .card__btn { transition: none; }
-      html { scroll-behavior: auto; }
     }
   </style>
 </head>
@@ -321,98 +180,95 @@
 
   <div class="page-bg" aria-hidden="true">
     <div class="grid-overlay"></div>
-    <img class="bg-photo bg-photo--1" src="assets/rafael.jpeg" alt="" width="140" height="180" loading="lazy" decoding="async">
-    <img class="bg-photo bg-photo--2" src="assets/rafael.jpeg" alt="" width="100" height="130" loading="lazy" decoding="async">
-    <img class="bg-photo bg-photo--3" src="assets/rafael.jpeg" alt="" width="120" height="150" loading="lazy" decoding="async">
-    <img class="bg-photo bg-photo--4" src="assets/rafael.jpeg" alt="" width="130" height="170" loading="lazy" decoding="async">
-    <img class="bg-photo bg-photo--5" src="assets/rafael.jpeg" alt="" width="90" height="115" loading="lazy" decoding="async">
-    <img class="bg-photo bg-photo--6" src="assets/rafael.jpeg" alt="" width="110" height="140" loading="lazy" decoding="async">
+    <img class="bg-photo bg-photo--1" src="https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?q=80&w=300&auto=format&fit=crop" alt="">
+    <img class="bg-photo bg-photo--2" src="https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?q=80&w=300&auto=format&fit=crop" alt="">
+    <img class="bg-photo bg-photo--3" src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?q=80&w=300&auto=format&fit=crop" alt="">
+    <img class="bg-photo bg-photo--4" src="https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?q=80&w=300&auto=format&fit=crop" alt="">
+    <img class="bg-photo bg-photo--5" src="https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?q=80&w=300&auto=format&fit=crop" alt="">
+    <img class="bg-photo bg-photo--6" src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?q=80&w=300&auto=format&fit=crop" alt="">
   </div>
 
-  <p class="quote-deco" aria-hidden="true">Eu quero ver o que acontece se eu não desistir</p>
+  <p class="quote-deco" aria-hidden="true">O extraordinário não vem<br>da zona de conforto</p>
 
   <div class="page">
     <div class="layout">
+      
       <aside class="hero-side hero-side--left" aria-hidden="true">
-        <img src="assets/rafael.jpeg" alt="" width="220" height="420" loading="lazy" decoding="async">
+        <img src="https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?q=80&w=400&auto=format&fit=crop" alt="">
       </aside>
 
       <main class="center">
         <header class="header">
           <div class="avatar-wrap">
-            <img class="avatar" src="assets/rafael.jpeg" alt="Rafael Tonietto" width="96" height="96" decoding="async">
+            <img class="avatar" src="https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?q=80&w=200&auto=format&fit=crop" alt="Rafael Tonietto">
           </div>
-          <h1 class="header__title">Links importantes</h1>
+          <h1 class="header__title">Links Importantes</h1>
           <p class="header__subtitle">@rafaeltonietto · Personal Trainer Academy</p>
         </header>
 
         <div class="cards">
 
-          <a href="https://pos.personaltraineracademy.com.br/ag-rt/" target="_blank" rel="noopener noreferrer" class="card"
-             aria-label="AG-RT — Redes sociais para vender consultoria online">
-            <div class="card__brand card__brand--serif">AG-RT</div>
-            <p class="card__text">
-              Redes sociais para vender consultoria online. Aprenda a se posicionar do jeito certo e
-              <strong>transformar seu perfil em uma máquina de novos clientes</strong>.
-            </p>
-            <span class="card__btn" aria-hidden="true">Clique aqui para saber mais</span>
-          </a>
-
-          <a href="https://form.respondi.app/HDY4fKbN" target="_blank" rel="noopener noreferrer" class="card"
-             aria-label="Mentoria Scala — Inscrever-se">
+          <a href="https://form.respondi.app/HDY4fKbN" target="_blank" rel="noopener noreferrer" class="card theme-scala">
             <div class="card__brand card__brand--oswald">
               <span class="muted">Mentoria</span> <span class="accent">Scala</span>
             </div>
             <p class="card__text">
-              Mentoria exclusiva para escalar sua consultoria online. Sistema validado para
-              <strong>atrair, converter e reter clientes em escala</strong>.
+              Envie suas respostas e aguarde nosso contato. Mentoria exclusiva para
+              <strong>escalar sua consultoria online</strong>.
             </p>
-            <span class="card__btn card__btn--apply" aria-hidden="true">Clique aqui para aplicar</span>
+            <span class="card__btn">Aplicação Exclusiva</span>
           </a>
 
-          <a href="https://pos.personaltraineracademy.com.br/mco/" target="_blank" rel="noopener noreferrer" class="card"
-             aria-label="Mapa da Consultoria Online — MCO">
+          <a href="https://pos.personaltraineracademy.com.br/ag-rt/" target="_blank" rel="noopener noreferrer" class="card theme-agrt">
+            <div class="card__brand card__brand--serif">Pós AG-RT</div>
+            <p class="card__text">
+              Redes sociais para vender consultoria. Aprenda a
+              <strong>transformar seu perfil em uma máquina de novos clientes</strong>.
+            </p>
+            <span class="card__btn">Clique aqui para saber mais</span>
+          </a>
+
+          <a href="https://pos.personaltraineracademy.com.br/mco/" target="_blank" rel="noopener noreferrer" class="card theme-mco">
             <div class="card__brand">
-              <span class="card__brand--label">Mapa da</span>
+              <span class="card__brand--label">Pós-Graduação</span>
               <div class="card__brand--big">MCO<span>Consultoria Online</span></div>
             </div>
             <p class="card__text">
-              O mapa completo da consultoria online para personal trainers. Domine cada etapa e
-              <strong>construa um negócio digital previsível</strong>.
+              O passo a passo para criar e vender a sua Consultoria Online do zero e
+              <strong>faturar todos os dias</strong>.
             </p>
-            <span class="card__btn" aria-hidden="true">Clique aqui para saber mais</span>
+            <span class="card__btn">Clique aqui para saber mais</span>
           </a>
 
-          <a href="https://editorapta.com.br/raio-x-do-instagram/" target="_blank" rel="noopener noreferrer" class="card"
-             aria-label="Raio-X do Instagram">
+          <a href="https://editorapta.com.br/raio-x-do-instagram/" target="_blank" rel="noopener noreferrer" class="card theme-raiox">
             <div class="card__brand card__brand--oswald">
               <span class="muted">Raio-X do</span> <span class="accent">Instagram</span>
             </div>
             <p class="card__text">
-              Diagnóstico completo do seu perfil. Descubra como produzir conteúdo que
-              <strong>o algoritmo não consegue ignorar</strong>.
+              De personal invisível a perfil profissional em 30 minutos.
+              <strong>Atraia clientes e valorize sua hora</strong>.
             </p>
-            <span class="card__btn" aria-hidden="true">Clique aqui para saber mais</span>
+            <span class="card__btn">Quero garantir o meu</span>
           </a>
 
-          <a href="https://editorapta.com.br/bmr/?utm_source=LinkTreeRafa" target="_blank" rel="noopener noreferrer" class="card"
-             aria-label="Guia de Marketing — BMR">
+          <a href="https://editorapta.com.br/bmr/?utm_source=LinkTreeRafa" target="_blank" rel="noopener noreferrer" class="card theme-bmr">
             <div class="card__brand card__brand--oswald">
               <span class="muted">Guia de</span> <span class="accent">Marketing</span>
             </div>
             <p class="card__text">
-              Estratégias de marketing validadas para personal trainers. Aprenda a
-              <strong>atrair e converter clientes</strong> com método comprovado.
+              O guia definitivo de Marketing para Personal Trainers. Aprenda o
+              <strong>método certo para atrair mais clientes</strong>.
             </p>
-            <span class="card__btn" aria-hidden="true">Clique aqui para saber mais</span>
+            <span class="card__btn">Garanta seu exemplar</span>
           </a>
 
         </div>
       </main>
 
       <aside class="hero-side hero-side--right" aria-hidden="true">
-        <img src="assets/rafael.jpeg" alt="" width="220" height="420" loading="lazy" decoding="async">
+        <img src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?q=80&w=400&auto=format&fit=crop" alt="">
       </aside>
+
     </div>
   </div>
 
