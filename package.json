@@ -1,0 +1,16 @@
+{
+  "name": "rafael-tonietto",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Links oficiais — Rafael Tonietto | Personal Trainer Academy",
+  "scripts": {
+    "build": "node build.js",
+    "prebuild": "node -e \"require('fs').accessSync('css/main.css')\""
+  },
+  "devDependencies": {
+    "clean-css": "^5.3.3",
+    "html-minifier-terser": "^7.2.0",
+    "sharp": "^0.33.5",
+    "terser": "^5.36.0"
+  }
+}
