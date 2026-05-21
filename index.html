@@ -87,7 +87,7 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      padding: max(1.5rem, env(safe-area-inset-top)) 1rem max(2.5rem, env(safe-area-inset-bottom));
+      padding: max(3.5rem, calc(env(safe-area-inset-top) + 2.5rem)) 1rem max(2.5rem, env(safe-area-inset-bottom));
     }
 
     .layout {
@@ -124,22 +124,23 @@
     .header {
       text-align: center;
       margin-bottom: 2rem;
+      padding-top: 1.25rem;
       position: relative;
     }
 
     .avatar-wrap {
       display: inline-block;
-      padding: 3px;
+      padding: 4px;
       border-radius: 50%;
       background: linear-gradient(135deg, #059669, #10b981, #047857);
-      margin-bottom: 1rem;
+      margin-bottom: 1.25rem;
       box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
     }
 
     .avatar {
       display: block;
-      width: 96px;
-      height: 96px;
+      width: 120px;
+      height: 120px;
       border-radius: 50%;
       object-fit: cover;
       object-position: center top;
@@ -279,7 +280,11 @@
       .bg-fixed-img--mobile { display: none; }
       .bg-fill { top: min(78vh, 720px); }
       .quote-deco { display: block; }
-      .avatar { width: 104px; height: 104px; }
+      .page {
+        padding-top: max(4.5rem, calc(env(safe-area-inset-top) + 3rem));
+      }
+      .header { padding-top: 2rem; }
+      .avatar { width: 144px; height: 144px; }
       .header__title { font-size: 2rem; }
       .card { padding: 1.65rem 1.5rem 1.5rem; }
       .card__text { font-size: 0.9375rem; }
@@ -289,7 +294,11 @@
       .bg-fixed-img,
       .bg-vignette { height: min(65vh, 480px); }
       .bg-fill { top: min(65vh, 480px); }
-      .avatar { width: 88px; height: 88px; }
+      .page {
+        padding-top: max(3rem, calc(env(safe-area-inset-top) + 2rem));
+      }
+      .header { padding-top: 1.5rem; }
+      .avatar { width: 112px; height: 112px; }
       .quote-deco { display: none; }
     }
 
@@ -336,8 +345,8 @@
               class="avatar"
               src="assets/rafael.jpeg"
               alt="Rafael Tonietto"
-              width="104"
-              height="104"
+              width="144"
+              height="144"
               decoding="async"
             >
           </div>
