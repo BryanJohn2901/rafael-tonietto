@@ -279,22 +279,25 @@
 
     .card:active { transform: scale(0.985); }
 
+    .card__head {
+      container-type: inline-size;
+      margin-bottom: 1rem;
+    }
+
     .card__title {
       font-family: 'Oswald', sans-serif;
-      font-size: 1.625rem;
+      font-size: clamp(0.75rem, 5.25cqi, 1.625rem);
       font-weight: 600;
-      line-height: 1.1;
+      line-height: 1.15;
       letter-spacing: 0.03em;
       text-transform: uppercase;
       color: #fff;
       margin-bottom: 0;
+      white-space: nowrap;
+      max-width: 100%;
     }
 
     .card__title .accent { color: var(--brand); }
-
-    .card__title--solo {
-      font-size: 1.75rem;
-    }
 
     .card__title-sub {
       display: block;
@@ -305,8 +308,9 @@
       margin-top: 0.2em;
     }
 
-    .card__head {
-      margin-bottom: 1rem;
+    .card__title--xs {
+      font-size: clamp(0.625rem, 4.35cqi, 0.9375rem);
+      letter-spacing: 0.01em;
     }
 
     .card__divider {
@@ -381,8 +385,7 @@
       .header__title { font-size: 2rem; }
       .cards { gap: 1.125rem; }
       .card { padding: 1.75rem 1.65rem 1.5rem; }
-      .card__title { font-size: 1.75rem; }
-      .card__title--solo { font-size: 1.875rem; }
+      .card__title { font-size: clamp(0.875rem, 5.5cqi, 1.75rem); }
       .card__text { font-size: 0.9375rem; }
     }
 
@@ -396,6 +399,19 @@
       .header { padding-top: 1.5rem; }
       .avatar-wrap { --avatar-size: 112px; }
       .quote-deco { display: none; }
+      .card { padding: 1.35rem 1.1rem 1.25rem; }
+      .card__title {
+        font-size: clamp(0.7rem, 4.85cqi, 1.05rem);
+        letter-spacing: 0.015em;
+      }
+      .card__title--xs {
+        font-size: clamp(0.6rem, 4.1cqi, 0.8125rem);
+        letter-spacing: 0.005em;
+      }
+      .header__title {
+        font-size: clamp(1.35rem, 8vw, 1.75rem);
+        white-space: nowrap;
+      }
     }
 
     @media (prefers-reduced-motion: reduce) {
@@ -456,7 +472,7 @@
           <a href="https://pos.personaltraineracademy.com.br/ag-rt/" target="_blank" rel="noopener noreferrer" class="card theme-agrt"
              aria-label="Aula gratuita — Comunidade RT">
             <div class="card__head">
-              <h2 class="card__title">AULA GRATUITA | <span class="accent">Comunidade RT</span></h2>
+              <h2 class="card__title card__title--xs">AULA GRATUITA | <span class="accent">Comunidade RT</span></h2>
             </div>
             <div class="card__divider" aria-hidden="true"></div>
             <p class="card__text">
@@ -492,7 +508,7 @@
           <a href="https://pos.personaltraineracademy.com.br/mco/" target="_blank" rel="noopener noreferrer" class="card theme-mco"
              aria-label="Mapa da Consultoria Online">
             <div class="card__head">
-              <h2 class="card__title">Mapa da <span class="accent">Consultoria Online</span></h2>
+              <h2 class="card__title card__title--xs">Mapa da <span class="accent">Consultoria Online</span></h2>
             </div>
             <div class="card__divider" aria-hidden="true"></div>
             <p class="card__text">
@@ -527,7 +543,7 @@
           <a href="https://editorapta.com.br/bmr/?utm_source=LinkTreeRafa" target="_blank" rel="noopener noreferrer" class="card theme-bmr"
              aria-label="Livro — Guia Definitivo do Marketing">
             <div class="card__head">
-              <h2 class="card__title">Livro | <span class="accent">Guia Definitivo do Marketing</span></h2>
+              <h2 class="card__title card__title--xs">Livro | <span class="accent">Guia Definitivo do Marketing</span></h2>
             </div>
             <div class="card__divider" aria-hidden="true"></div>
             <p class="card__text">
@@ -543,7 +559,7 @@
           <a href="https://www.personaltraineracademy.com.br/editora/reels-carrossel-e-stories" target="_blank" rel="noopener noreferrer" class="card theme-reels"
              aria-label="Livro — Reels, Carrossel e Stories">
             <div class="card__head">
-              <h2 class="card__title">Livro | <span class="accent">Reels, Carrossel e Stories</span></h2>
+              <h2 class="card__title card__title--xs">Livro | <span class="accent">Reels, Carrossel e Stories</span></h2>
             </div>
             <div class="card__divider" aria-hidden="true"></div>
             <p class="card__text">
