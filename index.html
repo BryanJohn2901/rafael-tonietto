@@ -23,41 +23,33 @@
       -webkit-font-smoothing: antialiased;
     }
 
-    /* —— Background parallax (topo) —— */
+    /* —— Background fixo (topo) —— */
     .page-bg {
       position: fixed;
       inset: 0;
       z-index: 0;
       pointer-events: none;
-      overflow: hidden;
     }
 
-    .bg-parallax-wrap {
-      position: absolute;
+    .bg-fixed-img {
+      position: fixed;
       top: 0;
       left: 0;
       width: 100%;
       height: min(72vh, 640px);
-      overflow: hidden;
+      object-fit: cover;
+      object-position: center top;
     }
 
-    .bg-parallax-img {
-      position: absolute;
+    .bg-fixed-img--desktop { display: none; }
+    .bg-fixed-img--mobile { display: block; }
+
+    .bg-vignette {
+      position: fixed;
       top: 0;
       left: 0;
       width: 100%;
-      height: 115%;
-      object-fit: cover;
-      object-position: center top;
-      will-change: transform;
-    }
-
-    .bg-parallax-img--desktop { display: none; }
-    .bg-parallax-img--mobile { display: block; }
-
-    .bg-vignette {
-      position: absolute;
-      inset: 0;
+      height: min(72vh, 640px);
       background: linear-gradient(
         to bottom,
         rgba(0, 0, 0, 0.25) 0%,
@@ -65,10 +57,11 @@
         rgba(0, 0, 0, 0.92) 78%,
         #000 100%
       );
+      pointer-events: none;
     }
 
     .bg-fill {
-      position: absolute;
+      position: fixed;
       left: 0;
       right: 0;
       top: min(72vh, 640px);
@@ -77,7 +70,7 @@
     }
 
     .grid-overlay {
-      position: absolute;
+      position: fixed;
       inset: 0;
       background-image:
         linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
@@ -280,9 +273,10 @@
     }
 
     @media (min-width: 900px) {
-      .bg-parallax-wrap { height: min(78vh, 720px); }
-      .bg-parallax-img--desktop { display: block; }
-      .bg-parallax-img--mobile { display: none; }
+      .bg-fixed-img,
+      .bg-vignette { height: min(78vh, 720px); }
+      .bg-fixed-img--desktop { display: block; }
+      .bg-fixed-img--mobile { display: none; }
       .bg-fill { top: min(78vh, 720px); }
       .quote-deco { display: block; }
       .avatar { width: 104px; height: 104px; }
@@ -292,14 +286,14 @@
     }
 
     @media (max-width: 599px) {
-      .bg-parallax-wrap { height: min(65vh, 480px); }
+      .bg-fixed-img,
+      .bg-vignette { height: min(65vh, 480px); }
       .bg-fill { top: min(65vh, 480px); }
       .avatar { width: 88px; height: 88px; }
       .quote-deco { display: none; }
     }
 
     @media (prefers-reduced-motion: reduce) {
-      .bg-parallax-img { transform: none !important; }
       html { scroll-behavior: auto; }
       .card, .card__btn { transition: none; }
     }
@@ -308,27 +302,25 @@
 <body>
 
   <div class="page-bg" aria-hidden="true">
-    <div class="bg-parallax-wrap">
-      <img
-        class="bg-parallax-img bg-parallax-img--mobile"
-        src="assets/mobile.webp"
-        alt=""
-        width="800"
-        height="1200"
-        decoding="async"
-        fetchpriority="high"
-      >
-      <img
-        class="bg-parallax-img bg-parallax-img--desktop"
-        src="assets/web.webp"
-        alt=""
-        width="1920"
-        height="1080"
-        decoding="async"
-        fetchpriority="high"
-      >
-      <div class="bg-vignette"></div>
-    </div>
+    <img
+      class="bg-fixed-img bg-fixed-img--mobile"
+      src="assets/mobile.webp"
+      alt=""
+      width="800"
+      height="1200"
+      decoding="async"
+      fetchpriority="high"
+    >
+    <img
+      class="bg-fixed-img bg-fixed-img--desktop"
+      src="assets/web.webp"
+      alt=""
+      width="1920"
+      height="1080"
+      decoding="async"
+      fetchpriority="high"
+    >
+    <div class="bg-vignette"></div>
     <div class="bg-fill"></div>
     <div class="grid-overlay"></div>
   </div>
@@ -418,36 +410,6 @@
       </main>
     </div>
   </div>
-
-  <script>
-    (function () {
-      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-
-      const desktop = document.querySelector('.bg-parallax-img--desktop');
-      const mobile = document.querySelector('.bg-parallax-img--mobile');
-      const mq = window.matchMedia('(min-width: 900px)');
-
-      let ticking = false;
-
-      function onScroll() {
-        if (!ticking) {
-          requestAnimationFrame(function () {
-            const y = window.scrollY;
-            const factor = mq.matches ? 0.42 : 0.28;
-            const img = mq.matches ? desktop : mobile;
-            if (img) {
-              img.style.transform = 'translate3d(0, ' + (y * factor) + 'px, 0)';
-            }
-            ticking = false;
-          });
-          ticking = true;
-        }
-      }
-
-      window.addEventListener('scroll', onScroll, { passive: true });
-      onScroll();
-    })();
-  </script>
 
 </body>
 </html>
